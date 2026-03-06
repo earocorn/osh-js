@@ -41,8 +41,7 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
             const match = regex.exec(properties.resource);
 
             this.streamObject = new ControlStream({
-                id: match[1],
-                // 'system@id': match[1]
+                id: match[1]
             }, networkProperties);
             this.streamFunction = function() {
                 this.streamObject.streamStatus(filter, (messages) => this.onStreamMessage(messages, filter.props.format));
@@ -55,7 +54,7 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
                 // is observation streaming
                 const match = regex.exec(properties.resource);
                 this.streamObject = new DataStream({
-                    id: match[2]
+                    id: match[1]
                 }, networkProperties);
                 this.streamFunction = function() {
                     this.streamObject.streamObservations(filter, (messages) => this.onStreamMessage(messages, filter.props.format));
