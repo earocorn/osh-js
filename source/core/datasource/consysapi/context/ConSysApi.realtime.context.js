@@ -29,7 +29,7 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
         };
         let filter;
         let regex = new RegExp('\\/controlstreams\\/(.*)\\/status'); // controlstreams/abc123/status
-        // let regex = new RegExp('\\/systems\\/(.*)\\/controlstreams\\/(.*)\\/status');
+
         this.streamObject = undefined;
 
         // check control status
@@ -39,7 +39,8 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
             const match = regex.exec(properties.resource);
 
             this.streamObject = new ControlStream({
-                id: match[2]
+                id: match[1],
+                'system@id': properties.systemId
             }, networkProperties);
             this.streamFunction = function() {
                 this.streamObject.streamStatus(filter, (messages) => this.onStreamMessage(messages, filter.props.format));
