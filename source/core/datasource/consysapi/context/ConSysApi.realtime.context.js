@@ -40,7 +40,6 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
 
             this.streamObject = new ControlStream({
                 id: match[1],
-                'system@id': properties.systemId
             }, networkProperties);
             this.streamFunction = function() {
                 this.streamObject.streamStatus(filter, (messages) => this.onStreamMessage(messages, filter.props.format));
