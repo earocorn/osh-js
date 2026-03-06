@@ -63,6 +63,7 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
     }
     onStreamMessage(messages, format) {
          // in case of om+json ,we have to add the timestamp which is not included for each record but at the root level
+        messages = Array.isArray(messages) ? messages : [messages];
         let results = messages;
         let version = this.properties.version;
         for(let message of messages) {
