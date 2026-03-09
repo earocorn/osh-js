@@ -28,7 +28,7 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
             streamProtocol: properties.protocol
         };
         let filter;
-        let regex = new RegExp('\\/systems\\/(.*)\\/controlstreams\\/(.*)\\/status');
+        let regex = new RegExp('\\/controlstreams\\/(.*)\\/status'); // controlstreams/abc123/status
 
         this.streamObject = undefined;
 
