@@ -39,8 +39,7 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
             const match = regex.exec(properties.resource);
 
             this.streamObject = new ControlStream({
-                id: match[2],
-                'system@id': match[1]
+                id: match[1],
             }, networkProperties);
             this.streamFunction = function() {
                 this.streamObject.streamStatus(filter, (messages) => this.onStreamMessage(messages, filter.props.format));
@@ -65,6 +64,7 @@ class ConSysApiRealTimeContext extends ConSysApiContext {
     onStreamMessage(messages, format) {
         messages = Array.isArray(messages) ? messages : [messages];
          // in case of om+json ,we have to add the timestamp which is not included for each record but at the root level
+        messages = Array.isArray(messages) ? messages : [messages];
         let results = messages;
         let version = this.properties.version;
         for(let message of messages) {
